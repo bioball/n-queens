@@ -17,18 +17,10 @@ describe("solvers", function() {
 
     it('finds the number of valid solutions for n of 1-8', function(){
       _.range(1, 9).map(function(n){
-        // if (n === 2 ){
-          // debugger;
-          // sinon.spy(window, "countNRooksSolutions");
+        var solutionCount = countNRooksSolutions(n);
+        var expectedSolutionCount = ["lalala", 1, 2, 6, 24, 120, 720, 5040, 40320][n];
 
-          var solutionCount = countNRooksSolutions(n);
-          var expectedSolutionCount = ["lalala", 1, 2, 6, 24, 120, 720, 5040, 40320][n];
-
-          console.log("Call count:", window.countNRooksSolutions.callCount);
-
-          expect(solutionCount).to.be.equal(expectedSolutionCount);
-          console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
-        // }
+        expect(solutionCount).to.be.equal(expectedSolutionCount);
       });
     });
 

@@ -21,6 +21,7 @@ window.findNRooksSolution = function(n){
 };
 
 window.countNQueensSolutions = function(n){
+  if(n === 1){ return 1; }
   n = n - 1;
   var
     solutionCount = 0,
@@ -46,7 +47,26 @@ window.countNQueensSolutions = function(n){
       }
     }
   }
-  recurse(0, col, maj, min);
+  var m = Math.floor((n+1)/2);
+  for(var i = 0; i < m; i++){
+    col[i] = 1;
+    maj[n - i] = 1;
+    min[i] = 1;
+    recurse(1, col, maj, min);
+    col[i] = 0;
+    maj[n - i] = 0;
+    min[i] = 0;
+  }
+  solutionCount *= 2;
+
+  if((n+1) % 2){
+    var middle = Math.ceil(n/2);
+    col[middle] = 1;
+    maj[n - middle] = 1;
+    min[middle] = 1;
+    recurse(1, col, maj, min);
+  }
+
   return solutionCount;
 }
 
